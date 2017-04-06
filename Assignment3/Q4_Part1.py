@@ -43,7 +43,7 @@ df.head()
 
 # In[7]:
 
-p = re.compile('^((Won? (\d+) (\w*(\s\w*)*)( & )?)?(Nominated for? (\d+) (\w*(\s\w*)*))?\u002e\s?)?(((Another )?((\d+) win\w?)( & )?)?((\d+) nomination\w?)?\u002e)?$')
+p = re.compile('^((Won? (\d+) (\w*(\s\w*)*)( & )?)?(Nominated for? (\d+) (\w*(\s\w*)*))?\u002e\s?)?((Another )?(((\d+) win\w?)( & )?)?((\d+) nomination\w?)?\u002e)?$')
 
 
 # In[8]:
@@ -57,6 +57,7 @@ def extract_awards(row):
             if spl_win_count and spl_win_type:
                 if spl_win_type[-1] == 's':
                     spl_win_type = spl_win_type[:-1]
+                spl_win_type = spl_win_type + ' Wins'    
                 row[spl_win_type] = spl_win_count
             
             spl_nom_count = m.group(8)
@@ -64,17 +65,22 @@ def extract_awards(row):
             if spl_nom_count and spl_nom_type:
                 if spl_nom_type[-1] == 's':
                     spl_nom_type = spl_nom_type[:-1]
+                spl_nom_type = spl_nom_type + ' Nominations'    
                 row[spl_nom_type] = spl_nom_count
                                 
             another_win_count = m.group(15)
             if another_win_count:
                 row['Awards_Won'] = another_win_count
+                if spl_win_count:
+                    row['Awards_Won'] = int(row['Awards_Won']) + int(spl_win_count)
             else:  
                 row['Awards_Won'] = 0
                 
             another_nom_count = m.group(18)
             if another_nom_count:
                 row['Nominations'] = another_nom_count
+                if spl_nom_count:
+                    row['Nominations'] = int(row['Nominations']) + int(spl_nom_count)
             else:
                 row['Nominations'] = 0                
         else:
@@ -88,10 +94,9 @@ def extract_awards(row):
 
 # In[9]:
 
-
 df = df.apply(extract_awards,axis=1)
 df = df.fillna(0)
-df.tail()
+df.head()
 
 
 # In[10]:
