@@ -22,3 +22,4 @@ With a focus on United States, derive insights from the events around the world 
 
 ### Analysis 3 - Stability trend of other countries due to US actions.
   
+![](analysis/analysis3/RegionalStability.png)
