@@ -17,5 +17,8 @@ With a focus on United States, derive insights from the events around the world 
 
 ### Analysis 2 - Ethnicities impacted due events in US.
 
+![](analysis/analysis2/Ethnic_AvgTone_Mean.png)
+![](analysis/analysis2/Ethnic_Event_Count.png)
+
 ### Analysis 3 - Stability trend of other countries due to US actions.
   
