@@ -11,6 +11,10 @@ With a focus on United States, derive insights from the events around the world 
  
 ### Analysis 1 - US relations with other countries
 
+![](analysis/analysis1/scatter_matrix.png)
+![](analysis/analysis1/violinplot.png)
+![](analysis/analysis1/comparitive_decline.png)
+
 ### Analysis 2 - Ethnicities impacted due events in US.
 
 ### Analysis 3 - Stability trend of other countries due to US actions.
